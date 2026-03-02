@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     keyboard = [
-            InlineKeyboardButton("Узнать погоду", callback_data="1"),
+            InlineKeyboardButton("Узнать погоду", callback_data=data['current']['temperature']),
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -28,7 +28,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
     await query.answer()
 
-    await query.edit_message_text(text=f"Нынешняя температура в Москве: {data['current']['temperature']}")
+    await query.edit_message_text(text=f"Нынешняя температура в Москве: {query.data}")
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
